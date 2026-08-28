@@ -262,7 +262,7 @@ body{
     inset 0 -10px 18px rgba(168, 214, 195, .18),
     inset 4px 0 6px rgba(255,255,255,.32),
     inset -3px 0 6px rgba(168, 214, 195, .08);
-  overflow:hidden;
+  overflow:visible;
 }
 /* 前面板左侧环境反射带 (圆柱边缘高光) */
 .mb-front::before{
@@ -825,13 +825,17 @@ body{
 }
 @keyframes fadeIn{ from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:none;} }
 /* ===== 移动端开屏动画 override（复用网页版 mailbox-cover 视觉） ===== */
-/* cover 改为 fixed 居中容器（最大 430px 居中），覆盖在简历之上 */
+/* cover 改为 fixed 居中容器（最大 430px 居中），覆盖在简历之上
+   overflow:visible 确保门板 rotateY(-120deg) 开门时不被裁切 */
 #cover.mailbox-cover{
   position:fixed; left:50%; top:0; transform:translateX(-50%);
   width:100%; max-width:430px; height:100vh; min-height:100vh;
   display:flex; align-items:center; justify-content:center;
   z-index:9999; overflow:visible;
 }
+/* 门容器显式不裁切，保证开门旋转时门板完整可见 */
+.mb-door-wrap{ overflow:visible; }
+.mb-body,.mb-scene{ overflow:visible; }
 /* 窄屏缩放：邮筒 / 信封 / Welcome 大字用 vw 自适应，避免横向溢出 */
 .mb-scene{ width:min(280px,72vw); }
 /* Welcome 竖排放在左侧：writing-mode 文字竖直排列 */
@@ -1050,8 +1054,8 @@ body{
     <div class="m-skills">
       <div class="m-skill"><h4>设计工具</h4><div class="m-tags"><span>Photoshop</span><span>Illustrator</span><span>C4D</span><span>Keyshot</span><span>Canva</span><span>剪映</span><span>Word</span><span>Excel</span><span>PowerPoint</span></div></div>
       <div class="m-skill"><h4>AIGC工具</h4><div class="m-tags"><span class="r-ai">Codex</span><span class="r-ai">WorkBuddy</span><span class="r-ai">AI Studio</span><span class="r-ai">nano banana</span><span class="r-ai">Liblib</span><span class="r-ai">Midjourney</span><span class="r-ai">Stable Diffusion</span><span class="r-ai">ChatGPT</span><span class="r-ai">即梦Seedance</span><span class="r-ai">可灵</span><span class="r-ai">海螺MiniMax H3</span><span class="r-ai">Comfy UI</span><span class="r-ai">Libtv</span><span class="r-ai">Lovart</span><span class="r-ai">Linkfox</span><span class="r-ai">Wan</span></div></div>
-      <div class="m-skill"><h4>影像与视觉能力</h4><div class="m-tags"><span>单反摄影</span><span>后期精修</span><span>视频剪辑</span><span>AI 动效合成</span></div></div>
-      <div class="m-skill"><h4>相关证书</h4><div class="m-tags"><span>摄影</span><span>精修</span><span>剪辑</span><span>AI动效合成</span><span>AI网页部署</span></div></div>
+      <div class="m-skill"><h4>影像与视觉能力</h4><div class="m-tags"><span>摄影</span><span>精修</span><span>剪辑</span><span>AI 动效合成</span><span>AI 网页部署</span></div></div>
+      <div class="m-skill"><h4>相关证书</h4><div class="m-tags"><span>计算机二级证书</span><span>普通话二级甲等</span><span>日语 N5</span></div></div>
 
     </div>
   </section>
